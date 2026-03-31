@@ -1,0 +1,46 @@
+# .cursorrules — Topskilly Project
+# Paste this file at the root of your project. Cursor reads it automatically.
+
+You are building Topskilly — a global skills lead marketplace.
+
+## Stack
+Web: Next.js 14 App Router + TypeScript + Tailwind CSS + shadcn/ui
+Mobile: React Native + Expo SDK 51 + Expo Router + NativeWind
+Backend: Supabase (PostgreSQL + Auth + RLS + Storage)
+Payments: Razorpay (India) + Stripe (Global) + Apple IAP (iOS)
+State: Zustand (mobile) + React Context (web)
+Email: Resend
+CDN/Security: Cloudflare
+Hosting: Vercel (web) + EAS (mobile)
+
+## Rules — Always Follow
+- Always use TypeScript. Never use plain JavaScript.
+- Always enable Row Level Security on every Supabase table.
+- Never hardcode API keys. Use environment variables (.env.local).
+- Every lead post MUST require phone OTP verification via Twilio/Supabase.
+- The coin unlock transaction MUST be atomic (use a Supabase PostgreSQL function).
+- Use server components by default in Next.js; use "use client" only when needed.
+- Use Supabase SSR client (createServerClient) in Server Components and API routes.
+- Use Supabase browser client (createBrowserClient) in Client Components.
+- All API routes must validate the user session before processing.
+- Max 3-5 professionals can unlock the same lead (check buyer_count before unlock).
+- No refund logic needed — OTP at lead post guarantees authenticity.
+
+## Brand
+- Primary colour: #1A56DB (Topskilly Blue)
+- Font: Inter
+- Tone: Premium, trustworthy, fast
+
+## File Structure
+apps/web/          — Next.js 14 App Router web app
+apps/mobile/       — React Native + Expo mobile app
+packages/shared/   — Shared TypeScript types and utilities
+supabase/          — Database schema, RLS policies, Edge Functions
+
+## Database Tables
+users, tutor_profiles, leads, lead_unlocks, purchases, wallets, messages, reviews, categories
+
+## Coin Pricing
+- 200 coins = 1 lead unlock
+- Rs. 2,000/month subscription = 2,000 coins (20 leads)
+- Coins never expire
