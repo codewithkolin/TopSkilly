@@ -20,6 +20,7 @@ export default async function StudentDashboard() {
     .select("name")
     .eq("id", user.id)
     .single();
+  const studentName = (userData as { name?: string } | null)?.name ?? "Student";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -27,7 +28,7 @@ export default async function StudentDashboard() {
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <span className="text-xl font-bold text-[#1A56DB]">Topskilly</span>
         <span className="text-sm text-gray-600">
-          Welcome, {userData?.name ?? "Student"}
+          Welcome, {studentName}
         </span>
       </header>
 

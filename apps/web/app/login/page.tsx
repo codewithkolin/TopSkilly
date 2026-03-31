@@ -59,10 +59,11 @@ export default function LoginPage() {
         .select("role")
         .eq("id", data.user.id)
         .single();
+      const userRole = (userData as { role?: string } | null)?.role;
 
-      if (!userData) {
+      if (!userRole) {
         router.push("/onboarding");
-      } else if (userData.role === "professional") {
+      } else if (userRole === "professional") {
         router.push("/dashboard/pro");
       } else {
         router.push("/dashboard/student");

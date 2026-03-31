@@ -30,6 +30,7 @@ export default async function ProDashboard() {
     .eq("tutor_id", user.id);
 
   const unlockedIds = new Set(unlocked?.map((u: any) => u.lead_id));
+  const coinsBalance = (wallet as { coins_balance?: number } | null)?.coins_balance ?? 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -39,7 +40,7 @@ export default async function ProDashboard() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 bg-blue-50 text-[#1A56DB] px-3 py-1.5 rounded-lg">
             <span className="text-sm font-semibold">
-              {wallet?.coins_balance ?? 0} coins
+              {coinsBalance} coins
             </span>
           </div>
           <Link
